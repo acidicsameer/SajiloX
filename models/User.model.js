@@ -24,7 +24,14 @@ const UserSchema = mongoose.Schema(
       type: String,
       enum: ["Customer", "Admin"],
       default: "Customer",
+    }, 
+   Otp: {
+type:Number,
     },
+    isOtpVerified: {
+  type: Boolean,
+  default: false,
+},
   },
   {
     timeStamps: true,
