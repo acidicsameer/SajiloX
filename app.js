@@ -8,16 +8,17 @@ import AuthRoute from "./Routes/UserAuth.route.js";
 dotenv.config(); 
 
 const app = express();
-app.use(express.json());
+app.use(express.json());  // json  handle  garna 
+app.use(express.static("./uploads")) // telling node to access uploads folder 
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // formdata handle garna 
 
 const port = process.env.PORT
 
 app.use("",AuthRoute) 
 app.use("",ProductRoute) 
 
-
+ 
 
 
 app.listen(port, () => {

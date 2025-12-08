@@ -22,6 +22,7 @@ const ProductSchema = mongoose.Schema(
       type: String,
       enum: ["available", "unavailable"],
     },
+    ProductImage: { type: String, required: true }
   },
   {
     timestamps: true,
