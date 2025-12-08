@@ -27,10 +27,13 @@ import jwt from "jsonwebtoken";
     if (isMatched) {
         //  CREATE TOKEN
     const token = jwt.sign(
-      { id: UserFound._id },
+      { id: UserFound._id,
+        role: UserFound.Role 
+       },
       process.env.SECRET_KEY,
       { expiresIn: "7d" }
-    );
+    ); 
+ 
 
     //  SET COOKIE
     res.cookie("jwttoken", token, {
@@ -39,7 +42,7 @@ import jwt from "jsonwebtoken";
       sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     }); 
-      return res.status(200).json({ message: "User logged in successfully" });
+      return res.status(200).json({ message: "User logged in successfully","data":token });
     } else {
       return res.status(401).json({ message: "Invalid email or password" });
     }

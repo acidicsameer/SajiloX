@@ -12,8 +12,8 @@ const UserSchema = mongoose.Schema(
       required: [true, "UserPhoneNumber must be provided "],
     },
     UserEmail: {
-      type: String, 
-    
+      type: String,
+
       required: [true, "Users Email  must be provided "],
     },
     UserPassword: {
@@ -22,19 +22,19 @@ const UserSchema = mongoose.Schema(
     },
     Role: {
       type: String,
-      enum: ["Customer", "Admin"],
-      default: "Customer",
-    }, 
-   Otp: {
-type:Number,
+      enum: ["customer", "admin"],
+      default: "customer",
+    },
+    Otp: {
+      type: Number,
     },
     isOtpVerified: {
-  type: Boolean,
-  default: false,
-},
+      type: Boolean,
+      default: false,
+    },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 const User = mongoose.model("User", UserSchema);

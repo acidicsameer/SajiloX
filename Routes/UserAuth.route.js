@@ -4,12 +4,12 @@
 import UserForgotpw from "../controllers/Auth/UserForgotpw.controller.js";
 import VerifyOtp from "../controllers/Auth/VerifyOtp.controller.js";
 import ConfirmPw from "../controllers/Auth/ConfirmPw.controller.js";
- const router= Router()  
+ const AuthRoute= Router()  
  //routes
- router.route("/register").post(UserRegister) 
- router.route("/login").post(UserLogin) 
- router.route("/forgotpw").post(UserForgotpw) 
- router.route("/verifyotp").post(VerifyOtp) 
- router.route("/confirmpw").post(ConfirmPw) 
+ AuthRoute.route("/register").post(UserRegister) 
+ AuthRoute.route("/login").post(UserLogin) 
+ AuthRoute.route("/forgotpw").post(UserForgotpw) 
+ AuthRoute.route("/verifyotp").post(VerifyOtp) 
+ AuthRoute.route("/confirmpw").post(ConfirmPw) 
   
- export  default router
+ export  default AuthRoute
