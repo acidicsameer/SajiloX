@@ -19,6 +19,7 @@ const UserSchema = mongoose.Schema(
     UserPassword: {
       type: String,
       required: [true, "Password must be provided "],
+      select: false,
     },
     Role: {
       type: String,
@@ -27,10 +28,12 @@ const UserSchema = mongoose.Schema(
     },
     Otp: {
       type: Number,
+      select: false,
     },
     isOtpVerified: {
       type: Boolean,
       default: false,
+      select: false,
     },
   },
   {

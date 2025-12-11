@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import dbConn from "./database/dbConn.js";
 import ProductRoute from "./Routes/Product.Route.js";
 import AuthRoute from "./Routes/UserAuth.route.js";
+import ReviewRoute from "./Routes/Review.Route.js";
+import AdminUserRoute from "./Routes/adminUsers.route.js";
 
 dotenv.config(); 
 
@@ -16,7 +18,9 @@ app.use(express.urlencoded({ extended: true })); // formdata handle garna
 const port = process.env.PORT
 
 app.use("",AuthRoute) 
-app.use("",ProductRoute) 
+app.use("",ProductRoute)  
+app.use("",ReviewRoute) 
+app.use("",AdminUserRoute)
 
  
 

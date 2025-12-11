@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
+import Review from "./Review.model.js";
 const ProductSchema = mongoose.Schema(
   {
     ProductName: {
@@ -22,7 +23,10 @@ const ProductSchema = mongoose.Schema(
       type: String,
       enum: ["available", "unavailable"],
     },
-    ProductImage: { type: String, required: true }
+    ProductImage: {
+       type: String, required: true
+       }, 
+ 
   },
   {
     timestamps: true,
