@@ -1,4 +1,4 @@
- const isAdmin = (...roles) => {
+ const RestrictTo = (...roles) => {
    return (req,res,next)=>{
      const userRole=req.user.role  
   console.log("USER ROLE:", userRole);
@@ -14,4 +14,4 @@
  
 };
  
-export default isAdmin  
+export default RestrictTo  

@@ -64,7 +64,7 @@ export const UpdateMyPassword = async (req, res) => {
     });
   }
 
-  if (NewPassword != ConfirmPassword) {
+  if (NewPassword !== ConfirmPassword) {
     return res.json({
       message: "Password must be matched correctly",
     });

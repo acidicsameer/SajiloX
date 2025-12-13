@@ -35,7 +35,11 @@ const UserSchema = mongoose.Schema(
       type: Boolean,
       default: false,
       select: false,
-    },
+    }, 
+    Cart:[{ 
+      type:Schema.Types.ObjectId, 
+      ref:"Product"
+    }]
   },
   {
     timestamps: true,
