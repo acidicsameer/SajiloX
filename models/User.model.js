@@ -12,18 +12,19 @@ const UserSchema = mongoose.Schema(
       required: [true, "UserPhoneNumber must be provided "],
     },
     UserEmail: {
-      type: String,
+      type: String, 
+      unique:true,
 
       required: [true, "Users Email  must be provided "],
     },
     UserPassword: {
       type: String,
       required: [true, "Password must be provided "],
-      select: false,
+      // select: false,
     },
     Role: {
       type: String,
-      enum: ["customer", "admin"],
+      enum: ["customer", "Admin"],
       default: "customer",
     },
     Otp: {
