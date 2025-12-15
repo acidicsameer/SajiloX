@@ -9,6 +9,7 @@ import ReviewRoute from "./Routes/user/Review.Route.js";
 import AdminUserRoute from "./Routes/admin/adminUsers.route.js";
 import UserProfileRoute from "./Routes/user/UserProfile.route.js";
 import CartRoute from "./Routes/user/Cart.route.js";
+import OrderRoute from "./Routes/user/Order.route.js";
 dotenv.config();
 
 const app = express();
@@ -25,6 +26,7 @@ app.use("", ReviewRoute);
 app.use("/admin", AdminUserRoute);
 app.use("", UserProfileRoute);
 app.use("", CartRoute);
+app.use("", OrderRoute);
 
 app.listen(port, () => {
   console.log("Server started successfully");
