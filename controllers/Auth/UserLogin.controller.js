@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
- import User from "../../models/User.model.js";  
+import User from "../../models/User.model.js";
  import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -13,7 +13,7 @@ import jwt from "jsonwebtoken";
       return res.status(400).json({ message: "Email and Password required" });
     }
 
-    const UserFound = await User.findOne({ UserEmail });
+    const UserFound = await User.findOne({ UserEmail }).select("+UserPassword")
 
     if (!UserFound) {
       return res.status(404).json({ message: "User not found" });

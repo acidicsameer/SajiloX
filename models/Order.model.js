@@ -24,7 +24,7 @@ const OrderSchema = mongoose.Schema({
   ],
   status: {
     type: String,
-    enum: ["pending", "delivered", "ontheway", "canceled", "preparation"],
+    enum: ["pending", "delivered", "ontheway", "cancelled", "preparation"],
     default: "pending"
   },
   totalAmount: {
@@ -35,15 +35,18 @@ const OrderSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  paymentDetails: {
-    method: {
+  paymentDetails: { 
+    pidx:{
+      type:String,
+    },
+    method: { 
       type: String,
       enum: ["COD", "Khalti"],
       required: true
     },
     status: {
       type: String,
-      enum: ["pending", "unpaid", "success"],
+      enum: ["pending", "unpaid", "success","paid"],
       default: "pending"
     }
   }

@@ -3,13 +3,15 @@ import express from "express";
 import dotenv from "dotenv";
 import dbConn from "./database/dbConn.js";
 
-import AuthRoute from "./Routes/auth/UserAuth.route.js";
 import ProductRoute from "./Routes/admin/Product.Route.js";
 import ReviewRoute from "./Routes/user/Review.Route.js";
 import AdminUserRoute from "./Routes/admin/adminUsers.route.js";
 import UserProfileRoute from "./Routes/user/UserProfile.route.js";
 import CartRoute from "./Routes/user/Cart.route.js";
 import OrderRoute from "./Routes/user/Order.route.js";
+import AdminOrderRoute from "./Routes/admin/order.route.js";
+import UserAuthRoute from './Routes/auth/UserAuth.route.js'
+import PaymentRoute from "./Routes/user/payment.route.js";
 dotenv.config();
 
 const app = express();
@@ -20,13 +22,16 @@ app.use(express.urlencoded({ extended: true })); // formdata handle garna
 
 const port = process.env.PORT;
 
-app.use("/auth", AuthRoute);
+app.use("/auth", UserAuthRoute);
 app.use("", ProductRoute);
 app.use("", ReviewRoute);
 app.use("/admin", AdminUserRoute);
+app.use("/admin", AdminOrderRoute);
 app.use("", UserProfileRoute);
 app.use("", CartRoute);
 app.use("", OrderRoute);
+app.use("/api/payment", PaymentRoute);
+
 
 app.listen(port, () => {
   console.log("Server started successfully");
