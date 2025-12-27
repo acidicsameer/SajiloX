@@ -11,8 +11,9 @@ const isAuth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    //returns payload of the jwt token in the decoded 
     req.user = decoded;
-    console.log(req.user);
+    console.log(decoded)
 
     next();
   } catch (err) {

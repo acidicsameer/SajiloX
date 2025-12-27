@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import CatchAsync from "../../utils/CatchAsync.js";
 import isAuth from "../../middlewares/isAuth.middleware.js";
-import { initiatekhaltipayment, verifypidx } from "../../controllers/User/payment/payment.controller.js";
+import { initiatekhaltipayment, verifypidx } from "../../controllers/User/payment/khaltipaymentcontroller.js";
 const PaymentRoute = Router();
 
 PaymentRoute.route("/")

@@ -1,6 +1,6 @@
 import axios from "axios";
 import Order from "../../../models/Order.model.js";
-
+import { getSocketIo } from "../../../app.js";
 export const initiatekhaltipayment = async (req, res) => {
   try {
     // Step 1: Get order details from frontend
@@ -68,7 +68,7 @@ export const verifypidx = async (req, res) => {
   try {
     // Step 1: Get pidx from URL query parameter
     const pidx = req.query.pidx;
-
+const io=getSocketIo()
     if (!pidx) {
       return res.redirect("http://localhost:5173/payment-error");
     }
@@ -99,10 +99,25 @@ export const verifypidx = async (req, res) => {
       await order.save();
 
       // Step 6: Redirect to success page
-      res.redirect("http://localhost:5173/payment-success");
+
+      io.on('connection', (socket) => {
+ 
+      io.to(socket.id).emit("payment",{
+        message:"payment successfully  done "
+      })
+  
+}) 
+      // res.redirect("http://localhost:5173/payment-success");
     } else {
       // Payment failed or pending
-      res.redirect("http://localhost:5173/payment-error");
+           io.on('connection', (socket) => {
+ 
+      io.to(socket.id).emit("payment",{
+        message:"payment failed  failed "
+      })
+  
+}) 
+      // res.redirect("http://localhost:5173/payment-error");
     }
   } catch (error) {
     console.error("Payment verification error:", error);

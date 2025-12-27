@@ -1,6 +1,6 @@
 import { Router } from "express";
 import UserLogin from "../../controllers/Auth/UserLogin.controller.js"; 
-import UserRegister from "../../controllers/Auth/UserLogin.controller.js"; 
+import UserRegister from "../../controllers/Auth/UserRegister.controller.js"; 
 import UserForgotpw from "../../controllers/Auth/UserLogin.controller.js"; 
 import VerifyOtp from "../../controllers/Auth/UserLogin.controller.js"; 
 import ConfirmPw from "../../controllers/Auth/UserLogin.controller.js"; 
