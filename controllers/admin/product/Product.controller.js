@@ -35,13 +35,13 @@ export const CreateProduct = async (req, res) => {
       ProductPrice,
       ProductStockQty,
       ProductStatus,
-      ProductImage: req.file.path,
+      ProductImage:`/uploads/${req.file.filename}`,
     });
 
     res.json({
       message: "Product Added successfully",
-      data: data,
-      filePath: req.file.path,
+      data
+      
     });
   } catch (error) {
     console.error(error);
@@ -52,8 +52,8 @@ export const CreateProduct = async (req, res) => {
 };
 
 export const DeleteProduct = async (req, res) => {
-  const data = await Product.findByIdAndDelete(req.params._id); 
-  console.log(data)
+  const data = await Product.findByIdAndDelete(req.params._id);
+  console.log(data);
   if (!data) {
     return res.status(400).json({
       message: "No user found on provided id ",
@@ -105,7 +105,7 @@ export const UpdateProduct = async (req, res) => {
         ProductDescription,
         ProductStockQty,
         ProductStatus,
-        ProductImage: req.file.path,
+        ProductImage: `/uploads/${req.file.filename}`,
       });
 
       return res.json({

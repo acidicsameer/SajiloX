@@ -1,49 +1,43 @@
-import User from "../../models/User.model.js"; 
+import User from "../../models/User.model.js";
 import bcrypt from "bcryptjs";
-
 const UserRegister = async (req, res) => {
   try {
-    const { UserName, UserEmail, UserPhoneNumber, UserPassword, Role } = req.body;
+    console.log("REQ BODY FROM FRONTEND 👉", req.body);
 
-    // Validate required fields
-    if (!UserName || !UserEmail || !UserPassword) {
-      return res.status(400).json({ 
-        message: "Name, email and password are required" 
+    const { name, email, phone, password, role } = req.body;
+
+    if (!name || !email || !password || !phone) {
+      return res.status(400).json({
+        message: "Name, email, phone and password are required",
       });
     }
 
-    // Check if user already exists
-    const UserFound = await User.findOne({ UserEmail }); 
-
+    const UserFound = await User.findOne({ UserEmail: email });
     if (UserFound) {
-      return res.status(409).json({ 
-        message: "User already exists with this email" 
+      return res.status(409).json({
+        message: "User already exists with this email",
       });
     }
 
-    // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(UserPassword, salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
-    const data = await User.create({
-      UserName,
-      UserEmail,
-      UserPhoneNumber,
+    const user = await User.create({
+      UserName: name,
+      UserEmail: email,
+      UserPhoneNumber: phone,
       UserPassword: hashedPassword,
-      Role,
+      Role: role || "customer",
     });
 
-
-    res.status(201).json({
+    return res.status(201).json({
       message: "Successfully registered user",
-      data
+      user,
     });
-
   } catch (error) {
-    console.error("Register Error:", error);
-    return res.status(500).json({ message: "Server error" });
+    console.error("REGISTER ERROR 👉", error);
+    return res.status(400).json({
+      message: error.message,
+    });
   }
-}
-
-export default UserRegister;
+};
+export default UserRegister

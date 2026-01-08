@@ -7,12 +7,11 @@ const adminSeeder = async () => {
   });
 
   if (!UserFound) {
-
     await User.create({
       UserName: "admin",
       UserEmail: "acidicsameer008@gmail.com",
       UserPhoneNumber: "9807409596",
-      UserPassword: await  bcrypt.hash("admin",10),
+      UserPassword: await bcrypt.hash("admin", 10),
       Role: "Admin",
     });
     console.log("Successfully seeded admin");

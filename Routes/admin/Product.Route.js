@@ -11,11 +11,12 @@ import CatchAsync from "../../utils/CatchAsync.js";
 import {
   getProduct,
   getSingleProduct,
+  trendingProducts,
 } from "../../controllers/globalController/global.controller.js";
 import RestrictTo from "../../middlewares/RestrictTo.middleware.js";
 const ProductRoute = Router();
 //routes
-ProductRoute.route("/product")
+ProductRoute.route("/api/product")
   .post(
     isAuth,
     RestrictTo("Admin"),
@@ -23,6 +24,7 @@ ProductRoute.route("/product")
     CatchAsync(CreateProduct)
   )
   .get(CatchAsync(getProduct));
+  
 ProductRoute.route("/product/:_id")
   .get(CatchAsync(getSingleProduct))
   .patch(
@@ -32,5 +34,6 @@ ProductRoute.route("/product/:_id")
     CatchAsync(UpdateProduct)
   )
   .delete(isAuth, RestrictTo("Admin"), CatchAsync(DeleteProduct));
-
+ProductRoute.route("/api/product/trending")
+.get(CatchAsync(trendingProducts));
 export default ProductRoute;

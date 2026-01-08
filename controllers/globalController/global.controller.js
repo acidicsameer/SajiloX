@@ -16,8 +16,10 @@ export const getProduct = async (req, res) => {
     }
     res.status(200).json({
       message: "fetched product successfully",
-      data:{product,
-      ProductReviews,}
+      data:{
+        product,
+      ProductReviews,
+    }
     });
   } catch (error) {
     res.status(500).json({
@@ -44,3 +46,22 @@ export const getSingleProduct = async (req, res) => {
     data: data,
   });
 };
+export const trendingProducts=async(req,res)=>{
+   const data =await Review.find({Rating:{$gt:3}}).populate({
+    path: "ProductId",
+
+  });
+   if(data.length==0){
+    res.json({
+      message:"no popular products "
+    })
+   }
+
+ const details = data.filter(element => element.ProductId);
+
+
+    res.status(200).json({
+      message:"successfully fetched trending products ", 
+     details
+    })
+}
